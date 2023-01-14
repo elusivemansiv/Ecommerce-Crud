@@ -28,7 +28,8 @@
       }
     </style>
 
-  
+    
+    <!-- Navbar -->
 
     <!-- Background image -->
     <div id="intro" class="bg-image shadow-2-strong">
@@ -36,7 +37,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-md-8">
-              <form action="{{route('register-user')}}" method="post" class="bg-white  rounded-5 shadow-5-strong p-5">
+              <form action="{{route('product-user')}}" method="post" class="bg-white  rounded-5 shadow-5-strong p-5"  enctype="multipart/form-data">
               @if(Session::has('success'))
                   <div class="alert alert-success">{{Session::get('success')}}</div>
                   @endif
@@ -47,56 +48,45 @@
                   {{@csrf_field()}}
               <div class="form-outline mb-4">
               
-              <label class="form-label" for="form1Example1">Full Name</label>
-              <input type="text" name="fullname" id="form1Example1" class="form-control" value="{{old('fullname')}}">
+              <label class="form-label" for="form1Example1">Product Name</label>
+              <input type="text" name="productname" id="form1Example1" class="form-control" value="{{old('productname')}}">
                  
-                  <span class="text-danger">@error('fullname') {{$message}} @enderror</span>
+                  <span class="text-danger">@error('productname') {{$message}} @enderror</span>
                 </div>
               <div class="form-outline mb-4">
 
-              <label class="form-label" for="form1Example1">Username</label>    
-              <input type="text" name="username" id="form1Example1" class="form-control" value="{{old('username')}}">
-                  
-                  <span class="text-danger">@error('username') {{$message}} @enderror</span>
+              <label class="form-label" for="form1Example1">Product Category</label>    
+              
+              <select class="form-select" name="productcategory" value="productcategory" >
+<option value="">Select Category</option>
+<option value="Accessories"@if(Request::old('car_color')=="Accessories") selected @endif>Accessories</option>
+<option value="Televisions"@if(Request::old('car_color')=="Televisions") selected @endif>Televisions</option>
+<option value="Laptops"@if(Request::old('car_color')=="Laptops") selected @endif>Laptops</option>
+</select>
+<span class="text-danger">@error('productcategory') {{$message}} @enderror</span>
                 </div>
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   
-                <label class="form-label" for="form1Example1">Email address</label>
-                <input type="email" name="email" id="form1Example1" class="form-control" value="{{old('email')}}">
+                <label class="form-label" for="form1Example1">Price</label>
+                <input type="text" name="price" id="form1Example1" class="form-control" value="{{old('price')}}">
                   
-                  <span class="text-danger">@error('email') {{$message}} @enderror</span>
+                  <span class="text-danger">@error('price') {{$message}} @enderror</span>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                   
-                <label class="form-label" for="form1Example1">Password</label>
-                <input type="password" name="password" id="form1Example2" class="form-control" />
+                <label class="form-label" for="form1Example1">Set Product Pic</label>
+                <input type="file" name="pp"   value="{{old('pp')}}">
                   
-                  <span class="text-danger">@error('password') {{$message}} @enderror</span>
+                  <span class="text-danger">@error('pp') {{$message}} @enderror</span>
                 </div>
 
-                <!-- 2 column grid layout for inline styling -->
-                <div class="row mb-4">
-                  <div class="col d-flex justify-content-center">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                      <label class="form-check-label" for="form1Example3">
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="col text-center">
-                    <!-- Simple link -->
-                    <a href="#!">Forgot password?</a>
-                  </div>
-                </div>
+        
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block">Registrer</button>
+                <button type="submit" class="btn btn-primary btn-block">Upload</button>
               </form>
             </div>
           </div>

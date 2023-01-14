@@ -15,15 +15,22 @@ use App\Http\Controllers\CustomAuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/login', [CustomAuthController::class,'login']);
+
+
+Route::get('/login', [CustomAuthController::class,'login'])->name('login');
 Route::post('/login-user', [CustomAuthController::class,'loginUser'])->name('login-user');
 
 Route::get('/dashboard', [CustomAuthController::class,'dashboard']);
 
-Route::get('/registration', [CustomAuthController::class,'registration']);
+Route::get('/registration', [CustomAuthController::class,'registration'])->name('registration');
 Route::post('/register-user', [CustomAuthController::class,'registerUser'])->name('register-user');
 
 Route::get('/logout',[CustomAuthController::class,'logout'])->name('logout');
+
+Route::get('/addProduct',[CustomAuthController::class,'addProduct'])->name('addProduct');
+Route::post('/product-user', [CustomAuthController::class,'productUser'])->name('product-user');
+
+Route::get('/productList',[CustomAuthController::class,'viewProduct'])->name('productList');
