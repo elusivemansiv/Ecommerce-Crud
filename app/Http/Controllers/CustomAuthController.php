@@ -112,6 +112,63 @@ class CustomAuthController extends Controller
         return view("productList")->with('plist',$plist);
     }
 
+    public function deleteProduct(Request $req){
+        
+        $plist = Product::find($req->id); 
+        $plist->delete();
+        return redirect('/productList');
+    }
+
+    public function editlist(Request $req)
+    {
+        $plist=Product::where('id','=',$req->id)->first();
+        return view('updatelist')->with('plist',$plist);
+        
+    }
+
+    public function updatelistSubmit(Request $req)
+    {
+        $req->validate([
+            'productname'=>'required',
+            'productcategory'=>'required',
+            'price'=>'required',
+            
+            
+            
+          ]);
+        
+        $plist=Product::where('id','=',$req->id)->first();
+        
+        $plist->id = $req->id;
+        $plist->productname = $req->productname;
+        $plist->productcategory = $req->productcategory;
+        $plist->price = $req->price;
+        
+       
+        
+
+        if($req->pp==null)
+          {
+            $plist->pp=$plist->pp;
+
+          }
+          else
+          {
+            $file_name = time().".".$req->file('pp')->getClientOriginalExtension();
+            $req->file('pp')->move(public_path('pro_images'),$file_name);
+            $plist->pp = $file_name;
+          }
+        
+       
+    
+        $res = $plist->save();
+        if($res){
+            return redirect('/productList');
+        }else{
+            return back()->with('fail', 'Something Went Wrong');
+        }
+    }
+
     public function logout()
     {
 

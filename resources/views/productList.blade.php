@@ -51,6 +51,19 @@ use Illuminate\Support\Facades\Request;
 
       </td>
 
+      
+      <td>
+      <a href="updatelist/{{$plist->id}}" class="btn btn-primary">Edit</a>
+      </td>
+
+      <td>
+      <form action="{{route('delete')}}" method="POST">
+          @method('DELETE')
+          @csrf
+          <input type="text" name="id" value="{{$plist->id }}" hidden>
+        <button class="btn btn-danger">Delete</button>
+        </form>
+      </td>
 
       </div>
     </tr>

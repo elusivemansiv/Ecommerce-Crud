@@ -34,3 +34,7 @@ Route::get('/addProduct',[CustomAuthController::class,'addProduct'])->name('addP
 Route::post('/product-user', [CustomAuthController::class,'productUser'])->name('product-user');
 
 Route::get('/productList',[CustomAuthController::class,'viewProduct'])->name('productList');
+Route::delete('delete',[CustomAuthController::class,'deleteProduct'])->name('delete');
+
+Route::get('/updatelist/{id}',[CustomAuthController::class,'editlist'])->name('updatelist');
+Route::post('updatelistSubmit',[CustomAuthController::class,'updatelistSubmit'])->name('updatelistSubmit');
